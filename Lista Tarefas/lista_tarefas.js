@@ -26,11 +26,72 @@ frm.btnSelecionar.addEventListener("click", () =>{
         return
     }
 
-    // percorrer a lista de elementos h5 inseridos na página, as tarefas
+    let auxiliar = -1 //auxiliar para indicar linha selecionada
+
+    // Percorre a lista de elementos h5 inseridos na página, as tarefas
+
     for (let i=0; i < tarefas.length; i++){
-        
-        tarefas[i].className ="tarefaselecionada"
-        
+
+        // Verifica se a tag é a a selecionada 
+        if( tarefas[i].className == "tarefaselecionada"){
+            
+            //Se for a class retorna para tarefa normal
+
+            tarefas[i].className = "tarefanormal" 
+
+            auxiliar = i //auxiliar marca a linha selecionada   
+
+            break       
+        }
+                     
     }
+
+    //Mas se a tag não for a selecionada, ele muda o estilo da próxima linha
+    tarefas[auxiliar+1].className="tarefaselecionada" 
+
+    // E se a linha selecionada for a última, ele reseta a auxiliar
+    if (auxiliar == tarefas.length-1){
+        auxiliar= -1
+    }
+    
+   
+
+})
+
+
+frm.btnRetirar.addEventListener("click", () =>{
+    const tarefas = document.querySelectorAll("h5") //cata todos os h5 do form e armazena num vetor
+
+    let aux=0
+
+    if (aux==-1){
+        alert("Selecione uma tarefa para retirar")
+        return
+    }
+
+    // Percorre a lista de elementos h5 inseridos na página, as tarefas
+
+    for (let i=0; i < tarefas.length; i++){
+
+        // Verifica se a tag é a a selecionada
+
+        if(tarefas[i].className == "tarefaselecionada"){
+            
+            //Se for, retira a linha
+
+            tarefas.Splice(i)  
+            
+            aux=1
+
+            return 
+        }
+        
+        if (aux==0){
+            return
+        }
+                     
+    }
+  
+   
 
 })
